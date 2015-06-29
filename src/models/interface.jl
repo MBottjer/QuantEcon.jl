@@ -1,3 +1,15 @@
+"""
+Supertype for models in QuantEcon.
+
+The model interface is defined for `AbstractModel` and implements solution
+routines if subtypes define two methods:
+
+1. `init_values(::AbstractModel) -> T`: give an initial guess (starting value)
+for the value function for the model
+2. `bellman_operator(m::AbstractModel, x::T)` Perform one iteration of the
+natural mapping defined by the Bellman equation for the model
+
+"""
 abstract AbstractModel
 
 function Base.writemime{T<:AbstractModel}(io::IO, ::MIME"text/plain", m::T)
